@@ -2,12 +2,12 @@
 $(".button-collapse").sideNav();
 
 var colors = new Array(
-  [139,0,139],
-  [138,43,226],
-  [218,112,214],
+  [75,20,140],
+  [97,44,161],
+  [119,74,173],
   [75,0,130],
   [147,112,219],
-  [221,160,221]);
+  [94,53,177]);
 
 var step = 0;
 //color table indices for:
@@ -192,4 +192,5 @@ to_picker.on('set', function(event) {
     from_picker.set('max', false)
   }
 });
+
 //Copy settings and initialization tooltipped

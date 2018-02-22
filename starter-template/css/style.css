@@ -1,3 +1,263 @@
+<<<<<<< HEAD
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+@font-face {
+  font-family: 'lato-light';
+  src: url('../fonts/Lato/Lato-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'lato-regular';
+  src: url('../fonts/Lato/Lato-Regular.ttf') format('truetype');
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+/* html {
+   font-family: GillSans, Calibri, Trebuchet, sans-serif;
+} */
+
+body #index-banner {
+  /* background-image: url('../img/concert-background-header-1.jpg');
+  background-size: cover; */
+  min-height: 100vh;
+}
+
+#index-banner h1,
+#navbar #logo-container {
+  font-family: 'Geo', sans-serif;
+}
+
+.lato-light {
+  font-family: lato-light;
+  font-style: normal;
+  font-weight: 150;
+  /* font-size: 1.05em;  */
+}
+
+#navbar .lato-light,
+#nav-collapse li a {
+  font-size: 1.05em;
+}
+
+#index-banner #index-subtitle,
+#index-banner #tour-button {
+  font-family: lato-light;
+}
+
+#index-banner h1 {
+  font-size: 10em;
+  margin-top: -10vh;
+  text-shadow: 1px 1px 1px #222;
+}
+
+#about-banner {
+  background-color: mediumpurple;
+}
+
+/* #navbar {
+  height: 9vh;
+} */
+
+#navbar #logo-container {
+  font-size: 4.5rem;
+  text-shadow: 3px 3px 1px #222;
+}
+
+#index-banner h5 {
+  text-shadow: 1px 1px 1px #222;
+  margin: -10px 0 30px;
+}
+
+#headphone-icon {
+
+}
+
+#map {
+  height: 75vh;
+}
+
+#map-ui {
+  margin: 0;
+}
+
+#map-ui #map-div {
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+#map-ui .tour-options-div {
+  padding: 1vh 0 1vh;
+}
+
+#map-ui .tour-options {
+  padding-bottom: 8vh;
+}
+
+.tour-icons {
+  width: 8vh;
+  height: 8vh;
+}
+
+#tour-form input[type=text]:focus {
+     border-bottom: 1px solid mediumpurple;
+     box-shadow: 0 1px 0 0 #000;
+}
+
+#start-icon,
+#end-icon {
+  width: 25px;
+  height: 25px;
+  margin-top: 10px;
+  margin-left: -20px;
+}
+
+#start-location-input,
+#end-location-input {
+  margin-left: 15px;
+}
+
+#start-date-input,
+#end-date-input {
+  margin-left: -20px;
+}
+
+#tour-form .location-labels {
+  margin-left: 15px;
+}
+
+.date-labels {
+  margin-left: -20px;
+}
+
+#form-subtitle {
+  margin-bottom: 40px;
+}
+
+.modal-content {
+  padding: 0px;
+}
+
+#modal1 #tour-modal-footer .row {
+  margin-bottom: 0px;
+}
+
+
+/* TODO: ANIMATIONS */
+
+#map-ui img:hover {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.3s;
+    /* When the animation is finished, start again */
+    animation-iteration-count: 1;
+}
+
+@keyframes shake {
+    0% { transform: rotate(2.5deg); }
+    20% { transform: rotate(0deg); }
+    40% { transform: rotate(-2.5deg); }
+    60% { transform: rotate(0deg); }
+    80% { transform: rotate(2.5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+
+
+
+/* #add-location-btn,
+#view-tour-btn {
+  margin-right: 30px;
+} */
+
+.del-loc-btn {
+  margin-top: 20px;
+}
+
+.picker { outline: none; } /* Optional feature */
+/* Header - Day of the week */
+.picker__weekday-display { background-color: #4a148c;
+    font-weight: 600;}
+/* Body - Today info */
+.picker__date-display { background-color: #4a148c; }
+/* Buttons of actions */
+
+.picker__nav--next,
+.picker__nav--prev {
+  color: lavender;
+}
+.picker__nav--prev:hover { background-color: lavender; }
+.picker__nav--next:hover { background-color: lavender; }
+.picker__nav--prev:before {
+  border-left: 0;
+  border-right: 0.75em solid #4a148c;
+}
+.picker__nav--next:before {
+  border-right: 0;
+  border-left: 0.75em solid #4a148c;
+}
+.picker__today { color: #15F384; }
+.picker__clear { /* If you want to customize */ }
+.picker__close { color: #15F384; }
+.btn-flat.picker__today:active { background-color: lavender; }
+.btn-flat.picker__close:active { background-color: lavender; }
+.btn-flat.picker__clear:active { background-color: lavender; }
+/* Select months of the year */
+.picker__select--month.browser-default {
+  display: inline;
+  background-color: #FFFFFF;
+  width: 34%;
+  border: none;
+  outline: none;
+}
+/* Every month of the year except: today */
+.picker__day { /* If you want to customize */ }
+.picker__day:hover { /* If you want to customize */ }
+.picker__day--infocus:hover { color: #a0f; }
+.picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
+    color: #F5F4F3;
+    font-weight: 700;
+}
+.picker__day.picker__day--infocus.picker__day--selected.picker__day--highlighted { background-color: #6a1b9a; }
+/* Today */
+.picker__day.picker__day--infocus.picker__day--today.picker__day--selected.picker__day--highlighted { background-color: #7b1fa2; }
+.picker__day.picker__day--today
+{ color: #7b1fa2;
+  font-weight: 700; }
+
+@media (max-width: 415px) {
+  #start-date-input,
+  #end-date-input,
+  .date-labels {
+    margin-left: 25px;
+  }
+  #index-banner h1 {
+    font-size: 6.8em;
+  }
+
+  #map {
+    height: 70vh;
+  }
+
+  #map-ui .tour-options-div {
+    /* margin: 0 0 0 0;
+    padding-left: 0; */
+  }
+}
+=======
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
@@ -99,3 +359,4 @@ body #index-banner {
 .del-loc-btn {
   margin-top: 20px;
 }
+>>>>>>> 8256ae308f8ac0f8046f56cc30333ceb3c426158

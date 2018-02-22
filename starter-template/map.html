@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Geo" rel="stylesheet">
     <link rel="stylesheet" href="https://developers.google.com/maps/documentation/javascript/demos/demos.css">
     <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <!-- <link rel="stylesheet" href="https://use.typekit.net/rzc5szn.css"> -->
   </head>
   <body>
     <!-- Modal Trigger -->
@@ -70,319 +71,330 @@
         <div class="nav-wrapper container">
           <a id="logo-container" href="index.html" class="brand-logo">G</a>
           <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="about.html">About</a></li>
-            <li><a href="map.html">Tour Planner</a></li>
-            <li><a href="#">Contact</a></li>
+          <ul id="nav-list" class="right hide-on-med-and-down">
+            <li><a class="lato-light" href="about.html">About</a></li>
+            <li><a class="lato-light" href="map.html">Tour Planner</a></li>
+            <li><a class="lato-light" href="#">Contact</a></li>
           </ul>
         </div>
       </nav>
     </div>
-    <ul id="nav-mobile" class="side-nav white">
-      <li><a href="about.html">About</a></li>
-      <li><a href="map.html">Tour Planner</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+    <div id="nav-collapse">
+      <ul id="nav-mobile" class="side-nav white">
+        <li class="lato-light"><a href="about.html">About</a></li>
+        <li class="lato-light"><a href="map.html">Tour Planner</a></li>
+        <li class="lato-light"><a href="#">Contact</a></li>
+      </ul>
+    </div>
 
     <!-- NAVBAR END -->
 
-    <div id="space-boi"></div>
-    <div id="map">
-      <script>
-        function initMap() {
-          var cities = [
-            {lat: 39.9526, lng: -75.1652},  // Philadelphia
-            {lat: 40.7128, lng: -74.006},   // New York
-            {lat: 34.0522, lng: -118.2437}, // Los Angeles
-            {lat: 30.2672, lng: -97.7431},  // Austin
-            {lat: 41.8781, lng: -87.6298},  // Chicago
-            {lat: 42.3601, lng: -71.0589},  // Boston
-            {lat: 43.6532, lng: -79.3832},  // Toronto
-            {lat: 47.6062, lng: -122.3321}  // Seattle
-          ];
-          var randCity = cities[Math.floor(Math.random()*cities.length)];
+    <div id="map-ui" class="row">
+      <!-- <div class="col s6">
+        <a href="map.html" class="tour-option-buttons btn-large waves-effect waves-light purple darken-4">Start Touring</a>
+      </div>
+      <div class="col s6">
+        <a href="map.html" class="tour-option-buttons btn-large waves-effect waves-light purple darken-4">Start Touring</a>
+      </div> -->
+      <div id="map-div" class="col s12">
+        <!-- map -->
 
-          var styledMapType = new google.maps.StyledMapType(
-              [
-                {
-                  "featureType": "all",
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                      {
-                          "saturation": 36
-                      },
-                      {
-                          "color": "#333333"
-                      },
-                      {
-                          "lightness": 40
-                      }
-                  ]
-              },
-              {
-                  "featureType": "all",
-                  "elementType": "labels.text.stroke",
-                  "stylers": [
-                      {
-                          "visibility": "on"
-                      },
-                      {
-                          "color": "#ffffff"
-                      },
-                      {
-                          "lightness": 16
-                      }
-                  ]
-              },
-              {
-                  "featureType": "all",
-                  "elementType": "labels.icon",
-                  "stylers": [
-                      {
-                          "visibility": "off"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "administrative",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                      {
-                          "color": "#fefefe"
-                      },
-                      {
-                          "lightness": 20
-                      }
-                  ]
-              },
-              {
-                  "featureType": "administrative",
-                  "elementType": "geometry.stroke",
-                  "stylers": [
-                      {
-                          "color": "#fefefe"
-                      },
-                      {
-                          "lightness": 17
-                      },
-                      {
-                          "weight": 1.2
-                      }
-                  ]
-              },
-              {
-                  "featureType": "landscape",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "color": "#f5f5f5"
-                      },
-                      {
-                          "lightness": 20
-                      }
-                  ]
-              },
-              {
-                  "featureType": "landscape",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                      {
-                          "color": "#d5d5d5"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "landscape.man_made",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                      {
-                          "color": "#7574c0"
-                      },
-                      {
-                          "saturation": "-37"
-                      },
-                      {
-                          "lightness": "75"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "poi",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "color": "#f5f5f5"
-                      },
-                      {
-                          "lightness": 21
-                      }
-                  ]
-              },
-              {
-                  "featureType": "poi.business",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                      {
-                          "color": "#7574c0"
-                      },
-                      {
-                          "saturation": "-2"
-                      },
-                      {
-                          "lightness": "53"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "poi.park",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "color": "#dedede"
-                      },
-                      {
-                          "lightness": 21
-                      }
-                  ]
-              },
-              {
-                  "featureType": "poi.park",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                      {
-                          "color": "#7574c0"
-                      },
-                      {
-                          "lightness": "69"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.highway",
-                  "elementType": "geometry.fill",
-                  "stylers": [
-                      {
-                          "color": "#7574c0"
-                      },
-                      {
-                          "lightness": "25"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.highway",
-                  "elementType": "geometry.stroke",
-                  "stylers": [
-                      {
-                          "color": "#ffffff"
-                      },
-                      {
-                          "lightness": 29
-                      },
-                      {
-                          "weight": 0.2
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.highway",
-                  "elementType": "labels.text.fill",
-                  "stylers": [
-                      {
-                          "lightness": "38"
-                      },
-                      {
-                          "color": "#000000"
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.arterial",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "color": "#ffffff"
-                      },
-                      {
-                          "lightness": 18
-                      }
-                  ]
-              },
-              {
-                  "featureType": "road.local",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "color": "#ffffff"
-                      },
-                      {
-                          "lightness": 16
-                      }
-                  ]
-              },
-              {
-                  "featureType": "transit",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "color": "#f2f2f2"
-                      },
-                      {
-                          "lightness": 19
-                      }
-                  ]
-              },
-              {
-                  "featureType": "water",
-                  "elementType": "geometry",
-                  "stylers": [
-                      {
-                          "color": "#e9e9e9"
-                      },
-                      {
-                          "lightness": 17
-                      }
-                  ]
-              }
-              ],
-              {name: 'Styled Map'});
+        <div id="map">
+          <script>
+            function initMap() {
+              var cities = [
+                {lat: 39.9526, lng: -75.1652},  // Philadelphia
+                {lat: 40.7128, lng: -74.006},   // New York
+                {lat: 34.0522, lng: -118.2437}, // Los Angeles
+                {lat: 30.2672, lng: -97.7431},  // Austin
+                {lat: 41.8781, lng: -87.6298},  // Chicago
+                {lat: 42.3601, lng: -71.0589},  // Boston
+                {lat: 43.6532, lng: -79.3832},  // Toronto
+                {lat: 47.6062, lng: -122.3321}  // Seattle
+              ];
+              var randCity = cities[Math.floor(Math.random()*cities.length)];
 
-          var map = new google.maps.Map(document.getElementById('map'), {
-            center: randCity,
-            zoom: 14,
-            mapTypeControlOptions: {
-              mapTypeIds: ['roadmap', 'satellite', 'styled_map']
-            },
-            gestureHandling: "greedy"
-          });
+              var styledMapType = new google.maps.StyledMapType(
+                  [
+                    {
+                      "featureType": "all",
+                      "elementType": "labels.text.fill",
+                      "stylers": [
+                          {
+                              "saturation": 36
+                          },
+                          {
+                              "color": "#333333"
+                          },
+                          {
+                              "lightness": 40
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "all",
+                      "elementType": "labels.text.stroke",
+                      "stylers": [
+                          {
+                              "visibility": "on"
+                          },
+                          {
+                              "color": "#ffffff"
+                          },
+                          {
+                              "lightness": 16
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "all",
+                      "elementType": "labels.icon",
+                      "stylers": [
+                          {
+                              "visibility": "off"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#fefefe"
+                          },
+                          {
+                              "lightness": 20
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "administrative",
+                      "elementType": "geometry.stroke",
+                      "stylers": [
+                          {
+                              "color": "#fefefe"
+                          },
+                          {
+                              "lightness": 17
+                          },
+                          {
+                              "weight": 1.2
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#f5f5f5"
+                          },
+                          {
+                              "lightness": 20
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#d5d5d5"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "landscape.man_made",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#7574c0"
+                          },
+                          {
+                              "saturation": "-37"
+                          },
+                          {
+                              "lightness": "75"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#f5f5f5"
+                          },
+                          {
+                              "lightness": 21
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi.business",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#7574c0"
+                          },
+                          {
+                              "saturation": "-2"
+                          },
+                          {
+                              "lightness": "53"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi.park",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#dedede"
+                          },
+                          {
+                              "lightness": 21
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "poi.park",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#7574c0"
+                          },
+                          {
+                              "lightness": "69"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.highway",
+                      "elementType": "geometry.fill",
+                      "stylers": [
+                          {
+                              "color": "#7574c0"
+                          },
+                          {
+                              "lightness": "25"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.highway",
+                      "elementType": "geometry.stroke",
+                      "stylers": [
+                          {
+                              "color": "#ffffff"
+                          },
+                          {
+                              "lightness": 29
+                          },
+                          {
+                              "weight": 0.2
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.highway",
+                      "elementType": "labels.text.fill",
+                      "stylers": [
+                          {
+                              "lightness": "38"
+                          },
+                          {
+                              "color": "#000000"
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.arterial",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#ffffff"
+                          },
+                          {
+                              "lightness": 18
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "road.local",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#ffffff"
+                          },
+                          {
+                              "lightness": 16
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "transit",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#f2f2f2"
+                          },
+                          {
+                              "lightness": 19
+                          }
+                      ]
+                  },
+                  {
+                      "featureType": "water",
+                      "elementType": "geometry",
+                      "stylers": [
+                          {
+                              "color": "#e9e9e9"
+                          },
+                          {
+                              "lightness": 17
+                          }
+                      ]
+                  }
+                  ],
+                  {name: 'Styled Map'});
 
-          var directionsDisplay = new google.maps.DirectionsRenderer({
-            map: map
-          });
+              window.map = new google.maps.Map(document.getElementById('map'), {
+                center: randCity,
+                zoom: 14,
+                mapTypeControlOptions: {
+                  mapTypeIds: ['roadmap', 'satellite', 'styled_map']
+                },
+                gestureHandling: "greedy"
+              });
 
-          // Set destination, origin and travel mode.
-          // var request = {
-          //   destination: philadelphia,
-          //   origin: pittsburgh,
-          //   travelMode: 'DRIVING'
-          // };
-          //
-          // // Pass the directions request to the directions service.
-          // var directionsService = new google.maps.DirectionsService();
-          // directionsService.route(request, function(response, status) {
-          //   if (status == 'OK') {
-          //     // Display the route on the map.
-          //     directionsDisplay.setDirections(response);
-          //   }
-          // });
-          map.mapTypes.set('styled_map', styledMapType);
-          map.setMapTypeId('styled_map');
-        }
+              map.mapTypes.set('styled_map', styledMapType);
+              map.setMapTypeId('styled_map');
+            }
 
 
 
-      </script>
+          </script>
+        </div>
+      </div>
+      <div class="tour-options-div col s4 deep-purple center-align">
+        <a id="tour-option-1" class="tooltipped tour-options waves-effect btn-flat" data-position="top" data-delay="50" data-tooltip="Northwest Tour">
+          <img class="tour-icons" src="img/bus-1.svg"></img>
+        </a>
+      </div>
+      <div class="tour-options-div col s4 deep-purple center-align">
+        <a id="tour-option-2" class="tooltipped tour-options waves-effect btn-flat" data-position="top" data-delay="50" data-tooltip="Midwest Tour">
+          <img class="tour-icons" src="img/bus-3.svg"></img>
+        </a>
+      </div>
+      <div class="tour-options-div col s4 deep-purple center-align">
+        <a id="tour-option-3" class="tooltipped tour-options waves-effect btn-flat" data-position="top" data-delay="50" data-tooltip="West Coast Tour">
+          <img class="tour-icons" src="img/bus-2.svg"></img>
+        </a>
+      </div>
     </div>
+
+
 
     <footer class="page-footer purple darken-4">
       <div class="container">
@@ -393,7 +405,7 @@
 
 
           </div>
-          <div class="col l3 s12">
+          <!-- <div class="col l3 s12">
             <h5 class="white-text">Settings</h5>
             <ul>
               <li><a class="white-text" href="#!">Link 1</a></li>
@@ -410,7 +422,7 @@
               <li><a class="white-text" href="#!">Link 3</a></li>
               <li><a class="white-text" href="#!">Link 4</a></li>
             </ul>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="footer-copyright">
@@ -426,5 +438,130 @@
     <script src="js/materialize.js"></script>
     <script src="js/init.js"></script>
     <script src="js/app.js"></script>
+    <script>
+
+      // Tour 1
+
+      var boston = {lat: 42.3601, lng: -71.0589};
+      var washington = {lat: 38.9072, lng: -77.0369};
+
+      var wp_ne = [
+        {location: 'Hartford, CT', stopover: true},
+        {location: 'New York, NY', stopover: true},
+        {location: 'Philadelphia, PA', stopover: true},
+        {location: 'Baltimore, MD', stopover: true},
+
+      ];
+
+
+      var denver = {lat: 39.7392, lng: -104.9903};
+      var nashville = {lat: 36.1627, lng: -86.7816};
+
+      var wp_mw = [
+        {location: 'Omaha, NB', stopover: true},
+        {location: 'Kansas City, MI', stopover: true},
+        {location: 'St Louis, MI', stopover: true},
+        {location: 'Chicago, IL', stopover: true},
+        {location: 'Indianapolis, IN', stopover: true}
+      ];
+
+
+      var seattle = {lat: 47.6062, lng: -122.3321};
+      var phoenix = {lat: 33.4484, lng: -112.0740};
+
+      var wp_sw = [
+        {location: 'Portland, OR', stopover: true},
+        {location: 'Sacramento, CA', stopover: true},
+        {location: 'San Francisco, CA', stopover: true},
+        {location: 'Los Angeles, CA', stopover: true},
+        {location: 'San Diego, CA', stopover: true}
+      ];
+
+      var directionsDisplay = new google.maps.DirectionsRenderer({
+        map: map,
+        polylineOptions: {
+          strokeColor: "purple"
+        }
+      });
+
+
+      document.getElementById("tour-option-1").addEventListener("click", function () {
+
+        // Set destination, origin and travel mode.
+        var request = {
+          destination: washington,
+          waypoints: wp_ne,
+          optimizeWaypoints: true,
+          origin: boston,
+          travelMode: 'DRIVING'
+        };
+
+        // Pass the directions request to the directions service.
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function(response, status) {
+          if (status == 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+            map.setZoom(6);
+          }
+        });
+      });
+
+      // Tour 2
+
+      document.getElementById("tour-option-2").addEventListener("click", function () {
+
+        // var directionsDisplay = new google.maps.DirectionsRenderer({
+        //   map: map
+        // });
+
+        // Set destination, origin and travel mode.
+        var request = {
+          destination: nashville,
+          waypoints: wp_mw,
+          optimizeWaypoints: true,
+          origin: denver,
+          travelMode: 'DRIVING'
+        };
+
+        // Pass the directions request to the directions service.
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function(response, status) {
+          if (status == 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+            map.setZoom(6);
+          }
+        });
+      });
+
+      // Tour 3
+
+      document.getElementById("tour-option-3").addEventListener("click", function () {
+
+        // var directionsDisplay = new google.maps.DirectionsRenderer({
+        //   map: map
+        // });
+
+        // Set destination, origin and travel mode.
+        var request = {
+          destination: phoenix,
+          waypoints: wp_sw,
+          optimizeWaypoints: true,
+          origin: seattle,
+          travelMode: 'DRIVING'
+        };
+
+        // Pass the directions request to the directions service.
+        var directionsService = new google.maps.DirectionsService();
+        directionsService.route(request, function(response, status) {
+          if (status == 'OK') {
+            // Display the route on the map.
+            directionsDisplay.setDirections(response);
+            map.setZoom(6);
+          }
+        });
+      });
+    </script>
   </body>
 </html>
